@@ -18,8 +18,8 @@ def load_data():
     red = np.array([1,0])
     yellow = np.array([0,1])
 
-    red_buoy = open("/home/aniket/Desktop/Priyank/filtered_train_data_red.txt",'r')
-    yellow_buoy = open("/home/aniket/Desktop/Priyank/filtered_train_data_yellow.txt",'r')
+    red_buoy = open("filtered_train_data_red.txt",'r')
+    yellow_buoy = open("filtered_train_data_yellow.txt",'r')
 
     Rdata = []
     lines = red_buoy.readlines()

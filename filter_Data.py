@@ -73,7 +73,7 @@ def plot_data(data):
 
 fig = plt.figure()
 ax = Axes3D(plt.gcf())   # ax = plt.subplot(111, projection='3d')
-datafile = open("/home/aniket/Desktop/Priyank/train_file_yellow.txt",'r')
+datafile = open("train_file_yellow.txt",'r')
 data = []
 lines = datafile.readlines()
 for line in lines:
