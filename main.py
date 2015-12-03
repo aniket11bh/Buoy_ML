@@ -12,7 +12,7 @@ for i in range(0,len(validation_data)):
 for i in range(0,len(test_data)):
 	test_data[i][1] = np.argmax(test_data[i][1])
 
-O = 2
+O = 3
 I = 3
 S = len(training_data)
 H = int((S/3-O)/(I+O+1))

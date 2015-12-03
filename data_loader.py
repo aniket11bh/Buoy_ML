@@ -14,26 +14,35 @@ import numpy as np
 
 def load_data():
     # Load the data for red_buoy and yellow buoy
-    
-    red = np.array([1,0])
-    yellow = np.array([0,1])
 
-    red_buoy = open("filtered_train_data_red.txt",'r')
-    yellow_buoy = open("filtered_train_data_yellow.txt",'r')
+    red_buoy = np.array([1,0,0])
+    yellow_buoy = np.array([0,1,0])
+    water = np.array([1,0,0])
+
+
+    red_buoy_data = open("Data/filtered_red_data.txt",'r')
+    yellow_buoy_data = open("Data/filtered_yellow_data.txt",'r')
+    water_data = open("Data/filtered_water_data.txt",'r')
 
     Rdata = []
-    lines = red_buoy.readlines()
+    lines = red_buoy_data.readlines()
     for line in lines:
-        Rdata.append( [[float(x)/256 for x in line.split()],red] )
+        Rdata.append( [[float(x)/256 for x in line.split()],red_buoy] )
 
     Ydata = []
-    lines = yellow_buoy.readlines()
+    lines = yellow_buoy_data.readlines()
     for line in lines:
-        Ydata.append( [[float(x)/256 for x in line.split()],yellow] )
+        Ydata.append( [[float(x)/256 for x in line.split()],yellow_buoy] )
 
-    data = Rdata + Ydata
-    red_buoy.close()
-    yellow_buoy.close()
+    Wdata = []
+    lines = water_data.readlines()
+    for line in lines:
+        Wdata.append( [[float(x)/256 for x in line.split()],water] )
+
+    data = Rdata + Ydata + Wdata
+    red_buoy_data.close()
+    yellow_buoy_data.close()
+    water_data.close()
 
     # print np.shape(Rdata)
     # print np.shape(Ydata)
@@ -51,7 +60,3 @@ def load_data():
 
 
     return (training_data, validation_data, test_data)
-
-
-   
-
