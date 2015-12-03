@@ -30,12 +30,12 @@ NOT_A_BUOY = 0
 def neuralNetwork(data):
 	net1 = network.load("nnet")
 	a = net1.feedforward(data)
-	if a[0] >= 0.5 :
-		a = (1,0)
-	elif a[1] >= 0.5:
-		a = (0,1)
+	if a[0] > 0.5 :
+		a = (1,0,0)  #Red
+	elif a[1] > 0.5:
+		a = (0,1,0)  #yellow
 	else :
-		a = (0,0)
+		a = (0,0,1)  #water
 	return a
 
 def storeBGR2Output():
@@ -43,8 +43,8 @@ def storeBGR2Output():
 	for i in range(256):
 		for j in range(256):
 			for k in range(256):
-				val = neuralNetwork([i,j,k])	#Assumed that this function return the neural network output for BGR value i,j,k as 
-											#(1,0) for red buoy, (0,1) for yellow buoy and (0,0) otherwise. Never returns (1,1)
+				val = neuralNetwork([i,j,k])	# pass BGR value to the NN
+
 				if val == red:
 					val = RED
 				elif val == yellow:

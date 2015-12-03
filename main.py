@@ -18,7 +18,7 @@ S = len(training_data)
 H = int((S/3-O)/(I+O+1))
 
 net = network.Network([I, H ,O] ,cost=network.CrossEntropyCost, plot = True)
-net.SGD(training_data,30,10,0.1,lmbda=5.0,evaluation_data = test_data,monitor_evaluation_accuracy=True,monitor_training_accuracy=True)
+net.SGD(training_data,30,10,0.1,lmbda=5.0,evaluation_data = validation_data ,monitor_evaluation_accuracy=True,monitor_training_accuracy=True)
 
 """If we want to test on any dataset"""
 
@@ -34,3 +34,6 @@ net.SGD(training_data,30,10,0.1,lmbda=5.0,evaluation_data = test_data,monitor_ev
 # a = np.asarray(a)
 # net1 = network2.load("nnet_97.83")
 # print "Predicted Answer:",np.argmax(net1.feedforward(a))
+
+# net1 = network.load("nnet")
+# print float(net1.accuracy(validation_data))/len(validation_data) * 100
