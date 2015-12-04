@@ -42,11 +42,11 @@ def neuralNetwork(data):
 		a = (0,0,1)  #water
 	return a
 
-def storeBGR2Output():
+def storeBGR2Output(start_index, end_index):
         start_time = time.time()
         step_2_times = []
-	AllOutputs = open("AllOutputs.txt",'w');
-	for i in range(256):
+	AllOutputs = open(str(start_index) + "-" + str(end_index) + ".txt",'w');
+	for i in range(start_index, end_index):
                 print "Running loop level 1: %d of 256" % i
 		for j in range(256):
                         start_time = time.time()
@@ -93,5 +93,16 @@ def loadNNOutputfile():
 # else:
 # 	val = NOT_A_BUOY
 # print val
-storeBGR2Output()
+import sys
+if len(sys.argv) == 3:
+    start_glob = int(sys.argv[1])
+    end_glob = int(sys.argv[2])
+else:
+    if len(sys.argv) == 2:
+        start_glob = int(sys.argv[1])
+        end_glob = start_glob + 1
+    else:
+        print "You need to provide atleast the start index"
+        sys.exit(0)
+storeBGR2Output(start_glob, end_glob)
 # print neuralNetwork([74,105,87])
