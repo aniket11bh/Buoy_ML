@@ -21,6 +21,8 @@ import network
 import numpy as np
 import pylab as pl
 import time
+import os
+import shutil
 
 red = (1,0,0)
 yellow = (0,1,0)
@@ -84,9 +86,11 @@ def storeBGR2Output(start_index, end_index):
 
                         # print "Stats print stop at %0.2f" % time.time()
 
-                # save the input upto the last i in a separate file to enable Ctrl+C'ing this script
+                        # backup_file_name = 'backup_' + str(start_index) + '-' + str(i+1) + '.txt'
 
-                shutil.copyfile(main_file_name, 'backup_' + str(start_index) + '-' + str(i+1) + '.txt')
+                        # os.system('cp ' + main_file_name + ' ' + backup_file_name)
+
+        AllOutputs.close()
 
 '''
 This function load the file into the 3D array called NNOutput
