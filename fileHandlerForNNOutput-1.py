@@ -20,6 +20,7 @@ and so on 256*256*256 lines
 import network
 import numpy as np
 import pylab as pl
+import time
 
 red = (1,0,0)
 yellow = (0,1,0)
@@ -42,15 +43,18 @@ def neuralNetwork(data):
 	return a
 
 def storeBGR2Output():
+        start_time = time.time()
+        step_2_times = []
 	AllOutputs = open("AllOutputs.txt",'w');
 	for i in range(256):
                 print "Running loop level 1: %d of 256" % i
 		for j in range(256):
-                        print "  Running loop level 2: %d of 256" % j
+                        start_time = time.time()
+                        print "  Running loop level 2: %d of 256 at %0.2f." % (j, time.time())
 			for k in range(256):
 				val = neuralNetwork([i/256.0,j/256.0,k/256.0])	# pass BGR value to the NN
 
-                                print "    Running loop level 3: %d of 256" % k
+                                # print "    Running loop level 3: %d of 256" % k
 				# val = neuralNetwork([i,j,k])	#Assumed that this function return the neural network output for BGR value i,j,k as 
 											#(1,0) for red buoy, (0,1) for yellow buoy and (0,0) otherwise. Never returns (1,1)
 				if val == red:
@@ -61,6 +65,13 @@ def storeBGR2Output():
 					val = NOT_A_BUOY
 				AllOutputs.write(str(val))
 				AllOutputs.write("\n")
+
+                        end_time = time.time()
+                        total_step_2_time = end_time - start_time
+                        step_2_times.append(total_step_2_time)
+                        # print step_2_times
+                        print "  -- Average time for level 2 array: %0.2f" % (sum(step_2_times) / len(step_2_times))
+
 
 '''
 This function load the file into the 3D array called NNOutput
