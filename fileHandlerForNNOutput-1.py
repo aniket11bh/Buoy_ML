@@ -44,10 +44,15 @@ def neuralNetwork(data):
 def storeBGR2Output():
 	AllOutputs = open("AllOutputs.txt",'w');
 	for i in range(256):
+                print "Running loop level 1: %d of 256" % i
 		for j in range(256):
+                        print "  Running loop level 2: %d of 256" % j
 			for k in range(256):
 				val = neuralNetwork([i/256.0,j/256.0,k/256.0])	# pass BGR value to the NN
 
+                                print "    Running loop level 3: %d of 256" % k
+				# val = neuralNetwork([i,j,k])	#Assumed that this function return the neural network output for BGR value i,j,k as 
+											#(1,0) for red buoy, (0,1) for yellow buoy and (0,0) otherwise. Never returns (1,1)
 				if val == red:
 					val = RED
 				elif val == yellow:
@@ -69,7 +74,6 @@ def loadNNOutputfile():
 				NNOutput[i][j][k] = int(AllOutputs.readline())
 	return NNOutput
 
-# data = [56/256.0,56/256.0,70/256.0]
 # val = neuralNetwork(data)
 # if val == red:
 # 	val = RED
@@ -79,3 +83,4 @@ def loadNNOutputfile():
 # 	val = NOT_A_BUOY
 # print val
 storeBGR2Output()
+# print neuralNetwork([74,105,87])
