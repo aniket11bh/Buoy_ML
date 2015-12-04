@@ -17,7 +17,7 @@ def load_data():
 
     red_buoy = np.array([1,0,0])
     yellow_buoy = np.array([0,1,0])
-    water = np.array([1,0,0])
+    water = np.array([0,0,1])
 
 
     red_buoy_data = open("Data/filtered_red_data.txt",'r')
@@ -48,8 +48,8 @@ def load_data():
     # print np.shape(Ydata)
     # print np.shape(data)
     np.random.shuffle(data) # Random shuffling of yellow and red buoy
-    N = int(len(data)*0.6)
-    V = int(len(data)*0.2)
+    N = int(len(data)*0.70)
+    V = int(len(data)*0.15)
     T = len(data) - N -V
 
     # print N, V, T
