@@ -21,15 +21,18 @@ import network
 import numpy as np
 import pylab as pl
 
-red = (1,0)
-yellow = (0,1)
-RED = 1
-YELLOW = 2
-NOT_A_BUOY = 0
+red = (1,0,0)
+yellow = (0,1,0)
+RED = 0
+YELLOW = 1
+NOT_A_BUOY = 2
 
 def neuralNetwork(data):
 	net1 = network.load("nnet")
 	a = net1.feedforward(data)
+	a = a/sum(a)
+	a = np.around(a, decimals=3)
+	# print "Probabilities : ",a
 	if a[0] > 0.5 :
 		a = (1,0,0)  #Red
 	elif a[1] > 0.5:
@@ -43,7 +46,7 @@ def storeBGR2Output():
 	for i in range(256):
 		for j in range(256):
 			for k in range(256):
-				val = neuralNetwork([i,j,k])	# pass BGR value to the NN
+				val = neuralNetwork([i/256.0,j/256.0,k/256.0])	# pass BGR value to the NN
 
 				if val == red:
 					val = RED
@@ -66,5 +69,13 @@ def loadNNOutputfile():
 				NNOutput[i][j][k] = int(AllOutputs.readline())
 	return NNOutput
 
-# print neuralNetwork([74,105,87])
+# data = [56/256.0,56/256.0,70/256.0]
+# val = neuralNetwork(data)
+# if val == red:
+# 	val = RED
+# elif val == yellow:
+# 	val = YELLOW
+# else:
+# 	val = NOT_A_BUOY
+# print val
 storeBGR2Output()

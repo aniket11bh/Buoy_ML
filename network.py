@@ -1,7 +1,7 @@
-"""network2.py
+"""network.py
 ~~~~~~~~~~~~~~
 
-An improved version of network.py, implementing the stochastic
+implementing the stochastic
 gradient descent learning algorithm for a feedforward neural network.
 Improvements include the addition of the cross-entropy cost function,
 regularization, and better initialization of network weights.  Note

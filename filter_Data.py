@@ -91,19 +91,19 @@ datafile.close()
 data2 = remove_redundant(data)
 data2 = filter_data(data2)
 
-datafile = open("Data/filtered_yellow_data.txt",'r')
-data = []
-lines = datafile.readlines()
-for line in lines:
-    data.append([int(x) for x in line.split()])
-datafile.close()
-data3 = remove_redundant(data)
-data3 = filter_data(data3)
+# datafile = open("Data/filtered_yellow_data.txt",'r')
+# data = []
+# lines = datafile.readlines()
+# for line in lines:
+#     data.append([int(x) for x in line.split()])
+# datafile.close()
+# data3 = remove_redundant(data)
+# data3 = filter_data(data3)
 
 
 plot_data(data1)
-plot_data(data2)
-plot_data(data3)
+# plot_data(data2)
+# plot_data(data3)
 
 plt.show()
 

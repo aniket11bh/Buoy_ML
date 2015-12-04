@@ -37,3 +37,16 @@ net.SGD(training_data,30,10,0.1,lmbda=5.0,evaluation_data = validation_data ,mon
 
 # net1 = network.load("nnet")
 # print float(net1.accuracy(validation_data))/len(validation_data) * 100
+
+
+# red_buoy_data = open("Data/filtered_water_data.txt",'r')
+# Rdata = []
+# red_buoy = np.array([0,0,1])
+# lines = red_buoy_data.readlines()
+# for line in lines:
+#     Rdata.append( [[float(x)/256 for x in line.split()],red_buoy] )
+
+# for i in range(0,len(Rdata)):
+# 	Rdata[i][1] = np.argmax(Rdata[i][1])
+# net1 = network.load("nnet")
+# print float(net1.accuracy(Rdata))/len(Rdata) * 100
