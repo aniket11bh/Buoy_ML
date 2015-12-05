@@ -21,6 +21,7 @@ import network
 import numpy as np
 import pylab as pl
 import time
+import sys
 import os
 import shutil
 
@@ -30,7 +31,16 @@ RED = 0
 YELLOW = 1
 NOT_A_BUOY = 2
 
+
 def neuralNetwork(data):
+	"""
+	Calculates the output of NN for particular normalized BGR / YUV values
+	VAlues can be changed : Threshold for Red, yellow and water
+
+	Input : list of normalized BGR or YUV values
+
+	output : 
+	"""
 	net1 = network.load("nnet")
 	a = net1.feedforward(data)
 	a = a/sum(a)
@@ -45,6 +55,14 @@ def neuralNetwork(data):
 	return a
 
 def storeBGR2Output(start_index, end_index):
+	"""
+	Stores output of NN for a range of BGR / YUV values into a text file named by it's range
+
+	Input : 
+		- start_index : Starting vlaue of B or  Y
+		- end_index   : End value of B or Y
+
+	"""
         start_time = time.time()
         step_2_times = []
         main_file_name = 'main_' + str(start_index) + "-" + str(end_index) + ".txt"
@@ -92,10 +110,17 @@ def storeBGR2Output(start_index, end_index):
 
         AllOutputs.close()
 
-'''
-This function load the file into the 3D array called NNOutput
-'''
+
 def loadNNOutputfile():
+	"""
+	This function load the file into the 3D array called NNOutput
+
+	Input : NONE
+
+	output : 3D array
+
+	"""
+	
 	AllOutputs = open("AllOutputs.txt",'r')
 	NNOutput = [[[0 for i in range(256)] for j in range(256)] for k in range(256)]
 	for i in range(256):
@@ -104,6 +129,11 @@ def loadNNOutputfile():
 				NNOutput[i][j][k] = int(AllOutputs.readline())
 	return NNOutput
 
+##### For checking the output of NN
+
+# data = ([224, 218, 87])
+# for i in range(len(data)) :
+# 	data[i] = float(data[i])/256
 # val = neuralNetwork(data)
 # if val == red:
 # 	val = RED
@@ -112,7 +142,10 @@ def loadNNOutputfile():
 # else:
 # 	val = NOT_A_BUOY
 # print val
-import sys
+
+
+##### For generation of 3D array
+
 if len(sys.argv) == 3:
     start_glob = int(sys.argv[1])
     end_glob = int(sys.argv[2])
@@ -124,4 +157,3 @@ else:
         print "You need to provide atleast the start index"
         sys.exit(0)
 storeBGR2Output(start_glob, end_glob)
-# print neuralNetwork([74,105,87])
