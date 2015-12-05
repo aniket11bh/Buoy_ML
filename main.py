@@ -16,7 +16,7 @@ O = 3
 I = 3
 # S = len(training_data)
 # H = int((S/3-O)/(I+O+1))
-H = 100
+H = 10
 
 net = network.Network([I, H ,O] ,cost=network.CrossEntropyCost, plot = True)
 net.SGD(training_data,30,10,0.1,lmbda=5.0,evaluation_data = validation_data ,monitor_evaluation_accuracy=True,monitor_training_accuracy=True)

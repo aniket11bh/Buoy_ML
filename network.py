@@ -219,7 +219,7 @@ features.
                 if(accuracy > self.maxacc):
                     self.maxacc = accuracy
                     print "max. accuracy:",self.maxacc
-                    self.save("nnetYUV")
+                    self.save("nnetHSV")
                 evaluation_accuracy.append((float(accuracy)/n_data)*100)
                 if self.plot:
                     self.line2.set_ydata(evaluation_accuracy)
@@ -229,7 +229,7 @@ features.
                     plt.draw()
                 print "Accuracy on evaluation data: {} / {}".format(self.accuracy(evaluation_data), n_data)
 
-        plt.savefig('only_1000_training_data_and_evaluationYUV.png')
+        plt.savefig('only_1000_training_data_and_evaluationHSV.png')
         return evaluation_cost, evaluation_accuracy, \
             training_cost, training_accuracy
 
