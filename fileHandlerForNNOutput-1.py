@@ -46,9 +46,9 @@ def neuralNetwork(data):
 	a = a/sum(a)
 	a = np.around(a, decimals=3)
 	# print "Probabilities : ",a
-	if a[0] > 0.5 :
+	if a[0] > 0.72 :
 		a = (1,0,0)  #Red
-	elif a[1] > 0.5:
+	elif a[1] > 0.72:
 		a = (0,1,0)  #yellow
 	else :
 		a = (0,0,1)  #water
