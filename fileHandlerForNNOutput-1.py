@@ -95,7 +95,7 @@ def storeBGR2Output(start_index, end_index):
                         step_2_times.append(total_step_2_time)
 
                         average_time = (sum(step_2_times) / len(step_2_times))
-                        percentage_done = (j + 1 + (i+1-start_index) * 256) / (float(end_index-start_index) * 256) * 100
+                        percentage_done = (j + 1 + (i-start_index) * 256) / (float(end_index-start_index) * 256) * 100
                         time_remaining = ((end_time - op_start_time) / percentage_done * 100 / 60) if percentage_done != 0 else 3600
 
                         print "  -- Average time for level 2 array: %0.2f" % average_time
